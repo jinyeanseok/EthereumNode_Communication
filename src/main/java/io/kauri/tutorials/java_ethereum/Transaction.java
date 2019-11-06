@@ -45,7 +45,7 @@ public class Transaction {
             String recipientAddress = "0x9C49326525Ad14fCf3307000bc940992E4614306"; //
 
             // Value to transfer (in wei)
-            BigInteger value = Convert.toWei("1", Unit.ETHER).toBigInteger();
+            BigInteger value = Convert.toWei("0.1", Unit.ETHER).toBigInteger();
 
             // Gas Parameters
             BigInteger gasLimit = BigInteger.valueOf(210000);
@@ -63,7 +63,8 @@ public class Transaction {
                     gasPrice,
                     gasLimit,
                     recipientAddress,
-                    value,String.valueOf("ec9588eb8595ed9598ec84b8ec9a94ebb894eba19decb2b4ec9db8eab3b5ebb680eca491ec9e85eb8b88eb8ba42e").trim()); //hex값 입력
+                    //value,String.valueOf("ec9588eb8595ed9598ec84b8ec9a94ebb894eba19decb2b4ec9db8eab3b5ebb680eca491ec9e85eb8b88eb8ba42e").trim()); //hex값 입력
+                    value,String.valueOf("EC 95 88 EB 85 95 ED 95 98 EC 84 B8 EC 9A 94 20 EB B8 94 EB A1 9D EC B2 B4 EC 9D B8 20 EA B3 B5 EB B6 80 20 EC A4 91 20EC 9E 85 EB 8B 88 EB 8B A4 2E").replaceAll("\\p{Z}", "")); //hex값 입력
 
             // Sign the transaction
             byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials); // nonce, gasprice, gaslimit, re~~, value, pk 값을 서명

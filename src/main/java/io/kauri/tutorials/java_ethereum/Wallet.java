@@ -19,6 +19,6 @@ public class Wallet {
         String privateKey = credentials.getEcKeyPair().getPrivateKey().toString(16);
         System.out.println("Account address : " + accountAddress);
         System.out.println("Private key : " + privateKey);
-
+        System.out.println("P ");
     }
 }

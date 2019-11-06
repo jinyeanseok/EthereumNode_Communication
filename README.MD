@@ -38,3 +38,31 @@
 #### error solution
 > String.valueOf("EC 95 88 EB 85 95 ED 95 98 EC 84 B8 EC 9A 94 20 EB B8 94 EB A1 9D EC B2 B4 EC 9D B8 20 ED 85 8C EC 8A A4 ED 8A B8 EC 9E 85 EB 8B 88 EB 8B A4 2E").**replaceAll("\\p{Z}", "")**);
   
+```   
+      Web3j web3 = Web3j.build(new HttpService("https://ropsten.infura.io"));
+         
+      System.out.println("Successfuly connected to Ethereum");
+```
+
+> ropsten Testnet 연동
+
+
+
+
+
+
+
+- 검색하기 컨텐츠
+
+  블록에 담긴 텍스트나 Txid를 검색하고 싶을 때 `KMP알고리즘 참조`
+  
+  https://bowbowbow.tistory.com/6
+  
+  
+- 컨텐츠사이트에서 TEXT, Txid검색
+
+  ```SELECT CUST_ID, CUST_NAME, EMAIL
+    FROM ENC_CUSTOMER
+    WHERE EMAIL LIKE '%kr';```
+ 
+    LIKE로 검색  

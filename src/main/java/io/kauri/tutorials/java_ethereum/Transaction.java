@@ -32,8 +32,8 @@ public class Transaction {
             String pk = "3501E8287CA1EF187C89FD68CFE23FA846E724E6D53A6516BC6A35AC3FFFE33C"; // 개인키 넣기
 
             // Decrypt and open the wallet into a Credential object
-            Credentials credentials = Credentials.create(pk);
-            System.out.println("Account address: " + credentials.getAddress());
+            Credentials credentials = Credentials.create(pk); // credentials변수에 pk값 대입
+            System.out.println("Account address: " + credentials.getAddress());  //비밀키의 주소
             System.out.println("Balance: " + Convert.fromWei(web3.ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST).send().getBalance().toString(), Unit.ETHER));
 
             // Get the latest nonce
@@ -42,7 +42,7 @@ public class Transaction {
 
             System.out.println("nonce : " + nonce);
             // Recipient address
-            String recipientAddress = "0x9C49326525Ad14fCf3307000bc940992E4614306"; //
+            String recipientAddress = "0x9C49326525Ad14fCf3307000bc940992E4614306"; // 수신자의 주소
 
             // Value to transfer (in wei)
             BigInteger value = Convert.toWei("0.1", Unit.ETHER).toBigInteger();
@@ -67,14 +67,14 @@ public class Transaction {
                     value,String.valueOf("EC 95 88 EB 85 95 ED 95 98 EC 84 B8 EC 9A 94 20 EB B8 94 EB A1 9D EC B2 B4 EC 9D B8 20 ED 85 8C EC 8A A4 ED 8A B8 EC 9E 85 EB 8B 88 EB 8B A4 2E").replaceAll("\\p{Z}", "")); //hex값 입력
 
             // Sign the transaction
-            byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials); // nonce, gasprice, gaslimit, re~~, value, pk 값을 서명
+            byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, credentials); // rawTransaction , pk 값을 서명
             String hexValue = Numeric.toHexString(signedMessage); // 서명한값을 hex값 변환
             System.out.println("hexValue : " + hexValue);  // hex값 출력
 
             // Send transaction
 
             EthSendTransaction ethSendTransaction = web3.ethSendRawTransaction(hexValue).sendAsync().get();  // ******
-                    String transactionHash = ethSendTransaction.getTransactionHash();
+                    String transactionHash = ethSendTransaction.getTransactionHash(); // ethSendTransaction에서 transactionHash값을 생성하여 transactionHash에 값을 대입.
             System.out.println("transactionHash: " + transactionHash);
 
             // Wait for transaction to be mined

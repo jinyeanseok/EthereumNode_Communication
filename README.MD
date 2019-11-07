@@ -66,3 +66,9 @@
     WHERE EMAIL LIKE '%kr';```
  
     LIKE로 검색  
+
+ - transaction.java
+ 
+    ```위 코드에서는 send, riceved 가 정해져 있어서 해당 프로젝트가 요구하는 가격을 지불하는것이 아니라 수수료만 지불하기 위해서 해당 홈페이지에 회원가입을 하면 해당 홈페이지에서 임의의 계정을 지급하여 transaction을 할 때 ether를 0ether로 설정하고 self로 보내어 수수료만 지급할 수 있도록 설계```
+    
+    ``그러면 회사에서``

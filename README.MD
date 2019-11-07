@@ -106,3 +106,17 @@ GitHub에 Pull Request를 생성한다.
 
 프로젝트 소유자는 Pull Request를 Merge 하고 닫는다.
 ```
+
+- Ethereum testnet
+
+```
+사용 가능한 이더리움 네트웍
+
+Main Ethereum network: https://mainnet.infura.io/<api-key>
+
+Test Ethereum network (Ropsten): https://ropsten.infura.io/<api-key>
+
+Test Ethereum network (Rinkeby): https://rinkeby.infura.io/<api-key>
+
+Test Ethereum network (INFURAnet): https://infuranet.infura.io/<api-key>
+```

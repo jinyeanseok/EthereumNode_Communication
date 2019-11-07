@@ -78,3 +78,31 @@
        DB랑 연동해서 배치파일로 최신화```
    
   ```지금 ether로 transaction보내는 과정을 etherescan에서 출력이 될 수 있도록 설계 해놨는데 궁금한 점은 이 소스코드에서는 임의계정으로 sender와 receiver 를 동일하게 설정하여 실행되도록 하고 있는데 궁금한 점은 사용자가 홈페이지에 가입하면 홈페이지에서 계정을 발급해서 사용자에게 전달하는지```
+  
+- git branch
+  
+    ```여러 협업자와 작업하고 자신만의 변경을 원할 때 git branch cats```
+    
+- git merge
+
+    ```branch에서 작업을 끝내고, 모든 협업자가 볼 수 있는 master branch로 병합```
+    
+    ```git merge cats 는 "cats" 브랜치에서 만든 모든 변경사항을 master로 추가한다는 뜻``` 
+  
+
+- Github Pull Request
+```
+프로젝트를 Fork 한다.
+
+master 기반으로 토픽 브랜치를 만든다.
+
+뭔가 수정해서 커밋한다.
+
+자신의 GitHub 프로젝트에 브랜치를 Push 한다.
+
+GitHub에 Pull Request를 생성한다.
+
+토론하면서 그에 따라 계속 커밋한다.
+
+프로젝트 소유자는 Pull Request를 Merge 하고 닫는다.
+```

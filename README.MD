@@ -120,3 +120,11 @@ Test Ethereum network (Rinkeby): https://rinkeby.infura.io/<api-key>
 
 Test Ethereum network (INFURAnet): https://infuranet.infura.io/<api-key>
 ```
+
+
+- Timestamp
+
+``JAVA code에서 timestamp를 출력하면 unix timestamp로 출력이 됨 ``
+
+``해결방법 : TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+             java.util.Date time new java.util.Date((Long.parseLong(timestamp)*1000));``

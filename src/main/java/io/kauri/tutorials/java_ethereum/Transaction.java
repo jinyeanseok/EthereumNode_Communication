@@ -2,6 +2,8 @@ package io.kauri.tutorials.java_ethereum;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -9,11 +11,9 @@ import org.web3j.crypto.Credentials;
 import org.web3j.crypto.RawTransaction;
 import org.web3j.crypto.TransactionEncoder;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
-import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
-import org.web3j.protocol.core.methods.response.EthGetTransactionReceipt;
-import org.web3j.protocol.core.methods.response.EthSendTransaction;
-import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.protocol.core.methods.response.*;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Convert.Unit;
@@ -31,6 +31,7 @@ public class Transaction {
         //Web3j web3 = Web3j.build(new HttpService("http://localhost:8545"));
         System.out.println("Successfuly connected to Ethereum");
 
+        //txid를 입력하면 블록넘버등 표시되도록 설계
 
         try {
             String pk = "3501E8287CA1EF187C89FD68CFE23FA846E724E6D53A6516BC6A35AC3FFFE33C"; // 개인키 넣기
@@ -80,7 +81,9 @@ public class Transaction {
 
             EthSendTransaction ethSendTransaction = web3.ethSendRawTransaction(hexValue).sendAsync().get();  // ******
                     String transactionHash = ethSendTransaction.getTransactionHash(); // ethSendTransaction에서 transactionHash값을 생성하여 transactionHash에 값을 대입.
-            System.out.println("transactionHash: " + transactionHash);
+            System.out.println("transactionHash(Txid): " + transactionHash);
+
+            //txid를 입력하면 블록넘버등 표시되도록 설계
 
             // Wait for transaction to be mined
             Optional<TransactionReceipt> transactionReceipt = null;
@@ -94,7 +97,23 @@ public class Transaction {
 
             System.out.println("Transaction : " + transactionHash + " was mined in block # " + transactionReceipt.get().getBlockNumber());
             System.out.println("Balance: " + Convert.fromWei(web3.ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST).send().getBalance().toString(), Unit.ETHER));
+            System.out.println("blockNumber : " + transactionReceipt.get().getBlockNumber());
+            DefaultBlockParameter blockParameter = DefaultBlockParameter.valueOf(transactionReceipt.get().getBlockNumber());
 
+            EthBlock ethBlock = web3.ethGetBlockByNumber(blockParameter, true).sendAsync().get();
+
+            EthBlock.Block block = ethBlock.getBlock();
+
+
+            long timestamp = Long.parseLong(String.valueOf(block.getTimestamp()));
+            Date date = new java.util.Date(timestamp * 1000L);
+            SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+            sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9"));
+            String formattedDate = sdf.format(date);
+
+            BigInteger size = block.getSize();
+            System.out.println("size : " + size); // 블록 높이같음
+            System.out.println("TimeStamp : " + formattedDate);
 
 
 

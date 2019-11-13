@@ -26,11 +26,11 @@ class Transation {
         System.out.println("Successfuly connected to Ethereum");
 
         try {
-            String pk = "3501E8287CA1EF187C89FD68CFE23FA846E724E6D53A6516BC6A35AC3FFFE33C"; // 개인키 넣기
+            String pk = "3501E8287CA1EF187C89FD68CFE23FA846E724E6D53A6516BC6A35AC3FFFE33C";
 
             // Decrypt and open the wallet into a Credential object
-            Credentials credentials = Credentials.create(pk); // credentials변수에 pk값 대입
-            System.out.println("Account address: " + credentials.getAddress());  //비밀키의 주소
+            Credentials credentials = Credentials.create(pk); //
+            System.out.println("Account address: " + credentials.getAddress());
             System.out.println("Balance: " + Convert.fromWei(web3.ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST).send().getBalance().toString(), Unit.ETHER));
 
             // Get the latest nonce
@@ -40,7 +40,7 @@ class Transation {
             System.out.println("nonce : " + nonce);
             // Recipient address
 
-            String recipientAddress = "0x811f6a5f5E13b294e35E58bf7b9DD02ad36C9490"; // 보낸사람 자기 자신의 주소
+            String recipientAddress = "0x811f6a5f5E13b294e35E58bf7b9DD02ad36C9490";
 
             // Value to transfer (in wei)
             BigInteger value = Convert.toWei("0", Unit.ETHER).toBigInteger();
@@ -85,15 +85,19 @@ class Transation {
             System.out.println("Transaction : " + transactionHash + " was mined in block # " + transactionReceipt.get().getBlockNumber());
             System.out.println("Balance: " + Convert.fromWei(web3.ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST).send().getBalance().toString(), Unit.ETHER));
 
+            // block information
             DefaultBlockParameter blockParameter = DefaultBlockParameter.valueOf(transactionReceipt.get().getBlockNumber());
             EthBlock ethBlock = web3.ethGetBlockByNumber(blockParameter, true).sendAsync().get();
             EthBlock.Block block = ethBlock.getBlock();
 
+            // block create Timestamp
             long timestamp = Long.parseLong(String.valueOf(block.getTimestamp()));
             Date date = new java.util.Date(timestamp * 1000L);
             SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT+9"));
             String formattedDate = sdf.format(date);
+
+            // block size
             BigInteger size = block.getSize();
 
             // hex -> UTF-8

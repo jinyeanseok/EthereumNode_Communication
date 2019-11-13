@@ -78,7 +78,6 @@ class Transation {
                 System.out.println("checking if transaction " + transactionHash + " is mined....");
                 EthGetTransactionReceipt ethGetTransactionReceiptResp = web3.ethGetTransactionReceipt(transactionHash).send();  // 보내주는 부분
                 transactionReceipt = ethGetTransactionReceiptResp.getTransactionReceipt();
-                //transactionReceipt = ethGetTransactionReceiptResp.getTransactionReceipt();
                 Thread.sleep(3000); // Wait 3 sec
             } while (!transactionReceipt.isPresent());
 
@@ -110,7 +109,6 @@ class Transation {
 
         } catch (IOException | InterruptedException | ExecutionException ex) {
             throw new RuntimeException(ex);
-
         }
     }
 }

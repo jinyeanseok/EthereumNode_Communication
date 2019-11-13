@@ -53,7 +53,6 @@ class Transation {
             // 프론트단에서 사용자가 입력하는 기능을 db에서 받아오는 기능추가     사용자 입력 : 안녕하세요 블록체인 공부 중 입니다
             byte[] message = "안녕하세요 블록체인 공부 중 입니다.".getBytes(StandardCharsets.UTF_8);
             String encoded = Base64.getEncoder().encodeToString(message);
-            System.out.println("textHex : " + encoded);
 
             RawTransaction rawTransaction = RawTransaction.createTransaction(
                     nonce,
@@ -70,7 +69,7 @@ class Transation {
             // Send transaction
             EthSendTransaction ethSendTransaction = web3.ethSendRawTransaction(hexValue).sendAsync().get();  // ******
             String transactionHash = ethSendTransaction.getTransactionHash(); // ethSendTransaction에서 transactionHash값을 생성하여 transactionHash에 값을 대입.
-            System.out.println("transactionHash: " + transactionHash);
+            System.out.println("transactionHash(Txid) : " + transactionHash);
 
             // Wait for transaction to be mined
             Optional<TransactionReceipt> transactionReceipt = null;
@@ -82,6 +81,7 @@ class Transation {
             } while (!transactionReceipt.isPresent());
 
             System.out.println("Transaction : " + transactionHash + " was mined in block # " + transactionReceipt.get().getBlockNumber());
+            System.out.println();
             System.out.println("Balance: " + Convert.fromWei(web3.ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST).send().getBalance().toString(), Unit.ETHER));
 
             // block information
@@ -102,6 +102,7 @@ class Transation {
             // hex -> UTF-8
             byte[] decoded = Base64.getDecoder().decode(encoded);
 
+            System.out.println("blockNum : " + transactionReceipt.get().getBlockNumber());
             System.out.println("size : " + size); // 블록 높이같음
             System.out.println("TimeStamp : " + formattedDate);
             System.out.println("hex : " + encoded);

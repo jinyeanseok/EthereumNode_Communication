@@ -49,7 +49,7 @@ public class Main {
             System.out.println("nonce : " + nonce);
 
 
-          //  WalletUtils.generateNewWalletFile("", "");
+            //  WalletUtils.generateNewWalletFile("", "");
         } catch (IOException ex) {
             throw new RuntimeException("Error whilst sending json-rpc requests", ex);
         }

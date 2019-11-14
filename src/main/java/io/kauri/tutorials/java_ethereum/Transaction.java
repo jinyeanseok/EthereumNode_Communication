@@ -1,4 +1,5 @@
 package io.kauri.tutorials.java_ethereum;
+import org.bouncycastle.util.encoders.Hex;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.RawTransaction;
 import org.web3j.crypto.TransactionEncoder;
@@ -52,8 +53,9 @@ class Transation {
             // string -> Hex
             // 프론트단에서 사용자가 입력하는 기능을 db에서 받아오는 기능추가     사용자 입력 : 안녕하세요 블록체인 공부 중 입니다
             byte[] message = "안녕하세요 블록체인 공부 중 입니다.".getBytes(StandardCharsets.UTF_8);
-            String encoded = Base64.getEncoder().encodeToString(message);
 
+//          String encoded = Base64.getEncoder().encodeToString(message);
+            String encoded = Hex.toHexString(message);
             RawTransaction rawTransaction = RawTransaction.createTransaction(
                     nonce,
                     gasPrice,
@@ -100,7 +102,8 @@ class Transation {
             BigInteger size = block.getSize();
 
             // hex -> UTF-8
-            byte[] decoded = Base64.getDecoder().decode(encoded);
+//          byte[] decoded = Base64.getDecoder().decode(encoded);
+            byte[] decoded = Hex.decode(encoded);
 
             System.out.println("blockNum : " + transactionReceipt.get().getBlockNumber());
             System.out.println("size : " + size); // 블록 높이같음
